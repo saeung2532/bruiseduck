@@ -30,20 +30,17 @@ function App() {
 
     // const net = await cocossd.load();
 
-    // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
-
     // https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/bruiseduck-detector/model.json
 
     // https://raw.githubusercontent.com/hugozanini/TFJS-object-detection/master/models/kangaroo-detector/model.json
 
-    const net = await tf.loadGraphModel(
+    // https://tensorflow-detection.s3.jp-tok.cloud-object-storage.appdomain.cloud/model.json
+
+    // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
+
+    const net = await loadGraphModel(
       "https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/bruiseduck-detector/model.json"
     );
-
-    // https://tensorflow-detection.s3.jp-tok.cloud-object-storage.appdomain.cloud/model.json
-    // const net = await loadGraphModel(
-    //   "https://tensorflow-detection.s3.jp-tok.cloud-object-storage.appdomain.cloud/model.json"
-    // );
 
     //  Loop and detect hands
     setInterval(() => {
@@ -75,10 +72,10 @@ function App() {
       const img = tf.browser.fromPixels(video);
       // console.log(img);
 
-      const resized = tf.image.resizeBilinear(img, [320, 320]);
+      const resized = tf.image.resizeBilinear(img, [640, 480]);
       // console.log(resized);
 
-      const casted = resized.cast("float32");
+      const casted = resized.cast("int32");
       // console.log(casted);
 
       const expanded = casted.expandDims(0);
@@ -91,17 +88,17 @@ function App() {
       // const classes = await obj[2].array();
       // const scores = await obj[4].array();
 
-      // Draw mesh
+      // // Draw mesh
       // const ctx = canvasRef.current.getContext("2d");
 
       // 5. TODO - Update drawing utility
-      // drawSomething(obj, ctx)
+      // drawSomething(obj, ctx);
       // requestAnimationFrame(() => {
       //   drawRect(
       //     boxes[0],
       //     classes[0],
       //     scores[0],
-      //     0.8,
+      //     0.5,
       //     videoWidth,
       //     videoHeight,
       //     ctx
