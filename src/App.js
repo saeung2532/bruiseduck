@@ -31,8 +31,13 @@ function App() {
     // const net = await cocossd.load();
 
     // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
+
+    // https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/bruiseduck-detector/model.json
+
+    // https://raw.githubusercontent.com/hugozanini/TFJS-object-detection/master/models/kangaroo-detector/model.json
+
     const net = await tf.loadGraphModel(
-      "https://raw.githubusercontent.com/hugozanini/TFJS-object-detection/master/models/kangaroo-detector/model.json"
+      "https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/bruiseduck-detector/model.json"
     );
 
     // https://tensorflow-detection.s3.jp-tok.cloud-object-storage.appdomain.cloud/model.json
@@ -68,19 +73,19 @@ function App() {
 
       // 4. TODO - Make Detections
       const img = tf.browser.fromPixels(video);
-      console.log(img);
+      // console.log(img);
 
-      // const resized = tf.image.resizeBilinear(img, [640, 480]);
+      const resized = tf.image.resizeBilinear(img, [320, 320]);
       // console.log(resized);
 
-      // const casted = resized.cast("int32");
+      const casted = resized.cast("float32");
       // console.log(casted);
 
-      // const expanded = casted.expandDims(0);
+      const expanded = casted.expandDims(0);
       // console.log(expanded);
 
-      // const obj = await net.executeAsync(expanded);
-      // console.log(obj);
+      const obj = await net.executeAsync(expanded);
+      console.log(obj);
 
       // const boxes = await obj[1].array();
       // const classes = await obj[2].array();
