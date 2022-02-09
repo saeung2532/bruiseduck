@@ -39,7 +39,7 @@ function App() {
     // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
 
     const net = await loadGraphModel(
-      "https://raw.githubusercontent.com/hugozanini/TFJS-object-detection/master/models/kangaroo-detector/model.json"
+      "https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/bruiseduck-detector/model.json"
     );
 
     //  Loop and detect hands
