@@ -26,28 +26,40 @@ const labelMap = {
 export const drawRect = (
   boxes,
   classes,
+  features,
   scores,
+  obj5,
+  obj6,
+  obj7,
+  obj8,
   threshold,
   imgWidth,
   imgHeight,
   ctx
 ) => {
   for (let i = 0; i <= boxes.length; i++) {
-    if (boxes[i] && classes[i] && scores[i] > threshold) {
+    if (obj7[i] && obj8[i] && scores[i] > threshold) {
       // Extract variables
-      console.log(boxes[i]);
-      console.log(classes[i]);
-      console.log(scores[i]);
+      // console.log(boxes[i]);
+      // console.log(classes[i]);
+      // console.log(features[i]);
+      // console.log(scores[i]);
+      // console.log(obj5[i]);
+      // console.log(obj6[i]);
+      // console.log(obj7[i]);
+      // console.log(obj8[i]);
 
-      const [y, x, height, width] = boxes[i];
-      const text = classes[i];
-      // console.log(text);
+      const [y, x, height, width] = obj7[i];
+      const text = obj8[i];
+      console.log(
+        labelMap[text]["name"] + " - " + Math.round(scores[i] * 100) / 100
+      );
 
       // Set styling
       ctx.strokeStyle = labelMap[text]["color"];
-      ctx.lineWidth = 10;
+      ctx.lineWidth = 5;
       ctx.fillStyle = "white";
-      ctx.font = "30px Arial";
+      ctx.font = "20px Arial";
 
       // DRAW!!
       ctx.beginPath();

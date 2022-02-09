@@ -43,13 +43,14 @@ function App() {
       // "https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/detection_v4/model.json"
       // "https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/detection_v5/model.json"
       // "https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/detection_v6/model.json"
-      "https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/detection_v8/model.json"
+      "https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/detection_v7/model.json"
+      // "https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/detection_v8/model.json"
     );
 
     //  Loop and detect hands
     setInterval(() => {
       detect(net);
-    }, 16.7);
+    }, 10);
   };
 
   const detect = async (net) => {
@@ -86,12 +87,24 @@ function App() {
       // console.log(expanded);
 
       const obj = await net.executeAsync(expanded);
-      console.log(obj);
+      // console.log(obj);
       // 'detection_boxes,detection_classes,detection_features,detection_multiclass_scores,detection_scores,num_detections,raw_detection_boxes,raw_detection_scores'
 
-      const boxes = await obj[1].array();
-      const classes = await obj[2].array();
-      const scores = await obj[4].array();
+      // obj.forEach((t) => t.print()); // log out the data of all tensors
+      // const data = [];
+      // for (let i = 0; i < obj.length; i++) {
+      //   console.log(obj[i].dataSync());
+      //   data.push(obj[i].dataSync()); // get the data
+      // }
+
+      const boxes = await obj[0].array();
+      const classes = await obj[1].array();
+      const features = await obj[2].array();
+      const scores = await obj[3].array();
+      const obj5 = await obj[4].array();
+      const obj6 = await obj[5].array();
+      const obj7 = await obj[6].array();
+      const obj8 = await obj[7].array();
 
       // const boxes = await obj[0].array();
       // const classes = await obj[1].array();
@@ -114,7 +127,12 @@ function App() {
         drawRect(
           boxes[0],
           classes[0],
+          features[0],
           scores[0],
+          obj5[0],
+          obj6[0],
+          obj7[0],
+          obj8[0],
           0.5,
           videoWidth,
           videoHeight,
