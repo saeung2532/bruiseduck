@@ -39,7 +39,7 @@ function App() {
     // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
 
     const net = await tf.loadGraphModel(
-      "https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json"
+      "https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/bruiseduck-detector/model.json"
     );
 
     //  Loop and detect hands
@@ -88,7 +88,7 @@ function App() {
       const classes = await obj[2].array();
       const scores = await obj[4].array();
 
-      console.log(boxes[0]);
+      // console.log(boxes[0]);
 
       // Draw mesh
       const ctx = canvasRef.current.getContext("2d");
