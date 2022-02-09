@@ -2,8 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import * as tf from "@tensorflow/tfjs";
-import * as cocossd from "@tensorflow-models/coco-ssd";
-import { loadGraphModel } from "@tensorflow/tfjs-converter";
+// import * as cocossd from "@tensorflow-models/coco-ssd";
+// import { loadGraphModel } from "@tensorflow/tfjs-converter";
 import Webcam from "react-webcam";
 // 2. TODO - Import drawing utility here
 import { drawRect } from "./utilities";
@@ -38,8 +38,8 @@ function App() {
 
     // https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json
 
-    const net = await loadGraphModel(
-      "https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/bruiseduck-detector/model.json"
+    const net = await tf.loadGraphModel(
+      "https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json"
     );
 
     //  Loop and detect hands
@@ -84,32 +84,34 @@ function App() {
       const obj = await net.executeAsync(expanded);
       console.log(obj);
 
-      // const boxes = await obj[1].array();
-      // const classes = await obj[2].array();
-      // const scores = await obj[4].array();
+      const boxes = await obj[1].array();
+      const classes = await obj[2].array();
+      const scores = await obj[4].array();
 
-      // // Draw mesh
-      // const ctx = canvasRef.current.getContext("2d");
+      console.log(boxes[0]);
+
+      // Draw mesh
+      const ctx = canvasRef.current.getContext("2d");
 
       // 5. TODO - Update drawing utility
       // drawSomething(obj, ctx);
-      // requestAnimationFrame(() => {
-      //   drawRect(
-      //     boxes[0],
-      //     classes[0],
-      //     scores[0],
-      //     0.5,
-      //     videoWidth,
-      //     videoHeight,
-      //     ctx
-      //   );
-      // });
+      requestAnimationFrame(() => {
+        drawRect(
+          boxes[0],
+          classes[0],
+          scores[0],
+          0.5,
+          videoWidth,
+          videoHeight,
+          ctx
+        );
+      });
 
-      // tf.dispose(img);
-      // tf.dispose(resized);
-      // tf.dispose(casted);
-      // tf.dispose(expanded);
-      // tf.dispose(obj);
+      tf.dispose(img);
+      tf.dispose(resized);
+      tf.dispose(casted);
+      tf.dispose(expanded);
+      tf.dispose(obj);
     }
   };
 

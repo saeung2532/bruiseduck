@@ -9,18 +9,18 @@
 //   6: { name: "Bruised elbow (FP32)", color: "brown" },
 // };
 
-// const labelMap = {
-//   1: { name: "Hello", color: "red" },
-//   2: { name: "Thank You", color: "yellow" },
-//   3: { name: "I Love You", color: "lime" },
-//   4: { name: "Yes", color: "blue" },
-//   5: { name: "No", color: "purple" },
-// };
-
 const labelMap = {
-  1: { name: "Kangaroo", color: "red" },
-  2: { name: "Other", color: "yellow" },
+  1: { name: "Hello", color: "red" },
+  2: { name: "Thank You", color: "yellow" },
+  3: { name: "I Love You", color: "lime" },
+  4: { name: "Yes", color: "blue" },
+  5: { name: "No", color: "purple" },
 };
+
+// const labelMap = {
+//   1: { name: "Kangaroo", color: "red" },
+//   2: { name: "Other", color: "yellow" },
+// };
 
 // Define a drawing function
 export const drawRect = (
@@ -35,8 +35,13 @@ export const drawRect = (
   for (let i = 0; i <= boxes.length; i++) {
     if (boxes[i] && classes[i] && scores[i] > threshold) {
       // Extract variables
+      console.log(boxes[i]);
+      console.log(classes[i]);
+      console.log(scores[i]);
+
       const [y, x, height, width] = boxes[i];
       const text = classes[i];
+      // console.log(text);
 
       // Set styling
       ctx.strokeStyle = labelMap[text]["color"];
