@@ -84,12 +84,23 @@ function App() {
 
       const obj = await net.executeAsync(expanded);
       console.log(obj);
+      // 'detection_boxes,detection_classes,detection_features,detection_multiclass_scores,detection_scores,num_detections,raw_detection_boxes,raw_detection_scores'
 
       const boxes = await obj[1].array();
       const classes = await obj[2].array();
       const scores = await obj[4].array();
 
+      // const boxes = await obj[0].array();
+      // const classes = await obj[1].array();
+      // const features = await obj[2].array();
+      // const multiclass_scores = await obj[3].array();
+      // const scores = await obj[4].array();
+
       // console.log(boxes[0]);
+      // console.log(classes[0]);
+      // console.log(features[0]);
+      // console.log(multiclass_scores[0]);
+      // console.log(scores[0]);
 
       // Draw mesh
       const ctx = canvasRef.current.getContext("2d");
