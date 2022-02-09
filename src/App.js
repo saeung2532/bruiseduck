@@ -42,7 +42,8 @@ function App() {
       // "https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json"
       // "https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/detection_v4/model.json"
       // "https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/detection_v5/model.json"
-      "https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/detection_v6/model.json"
+      // "https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/detection_v6/model.json"
+      "https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/detection_v7/model.json"
     );
 
     //  Loop and detect hands
