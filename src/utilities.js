@@ -35,9 +35,9 @@ export const drawRect = (
   for (let i = 0; i <= boxes.length; i++) {
     if (boxes[i] && classes[i] && scores[i] > threshold) {
       // Extract variables
-      console.log(boxes);
-      console.log(classes);
-      console.log(scores);
+      console.log(boxes[i]);
+      console.log(classes[i]);
+      console.log(scores[i]);
 
       const [y, x, height, width] = boxes[i];
       const text = classes[i];
