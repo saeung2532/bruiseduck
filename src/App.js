@@ -40,7 +40,8 @@ function App() {
 
     const net = await tf.loadGraphModel(
       // "https://tensorflowjsrealtimemodel.s3.au-syd.cloud-object-storage.appdomain.cloud/model.json"
-      "https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/bruiseduck-detector/model.json"
+      // "https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/detection_v4/model.json"
+      "https://raw.githubusercontent.com/saeung2532/bruiseduck/main/models/detection_v5/model.json"
     );
 
     //  Loop and detect hands
